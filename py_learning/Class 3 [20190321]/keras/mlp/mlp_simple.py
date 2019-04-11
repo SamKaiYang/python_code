@@ -40,12 +40,14 @@ y_Test = np_utils.to_categorical(y_test)
 
 model = Sequential()
 model.add(Dense(units=256, input_shape=(784,), activation='relu'))
+# for _ in range(10):
+#     model.add(Dense(units=256, activation='relu'))
 model.add(Dense(units=10,  activation='softmax'))
 
 #show network info
 print(model.summary())
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='Adam', metrics=['accuracy'])
 train_history = model.fit(x=x_Train_Norm, y=y_Train, validation_split=0.2, epochs=EPOCHS, batch_size=BATCH_SIZe, verbose=1)
 print("model.evaluate: ")
 scores = model.evaluate(x_Test_Norm, y_Test)
